@@ -3,6 +3,7 @@ const passport = require('passport');
 
 router.get('/' , passport.authenticate('discord'));
 router.get('/redirect', passport.authenticate('discord', { failureRedirect: '/' }), (req, res) => {
-    res.sendStatus(200)
+    res.send(req.user)
+
 });
 module.exports = router;
