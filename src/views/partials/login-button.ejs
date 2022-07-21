@@ -12,7 +12,10 @@
 <div class="navbar-end">
     <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" style="color: #4974b3">
-            <%=user.username+"#"+user.discriminator%>
+
+            <p><%=user.username%></p>
+
+            <img class="pp-discord" src="<%=`https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png`%>">
         </a>
 
         <div class="navbar-dropdown">
@@ -30,3 +33,11 @@
     </div>
 </div>
 <% } %>
+
+<style>
+    .pp-discord {
+        height: 32px;
+        border-radius: 50%;
+        margin-left: 10px;
+    }
+</style>
