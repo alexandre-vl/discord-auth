@@ -1,7 +1,8 @@
+
 <div class="card-server">
-    <div class="card-server-image" style="background-image: url(<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`%>);">
+    <div class="card-server-image" style="background-image: url(https://cdn.discordapp.com/icons/<%=guild.id%>/<%=guild.icon%>.png)">
         <figure class="image-container is-4by3" style=" backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center; align-items: center">
-            <img src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`%>" alt="Placeholder image">
+            <img src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`%>" alt="Placeholder image" id="image-t" />
         </figure>
     </div>
     <div class="card-server-content" style="height:50%; display: flex !important; flex-direction: column; justify-content: space-between">
@@ -17,6 +18,7 @@
         </div>
     </div>
 </div>
+
 
 <style>
     .card-server {

@@ -44,7 +44,6 @@ app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 
 app.get('/', (req, res) => {
-
     res.render('home', {user: req.user, logged: !!req.user });
 });
 
