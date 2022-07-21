@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/alexandre-vl/discord-auth#readme",
   "dependencies": {
+    "connect-mongo": "^3.2.0",
     "discord-oauth2": "^2.10.0",
     "dominant-color": "^0.0.1",
     "dotenv": "^16.0.1",

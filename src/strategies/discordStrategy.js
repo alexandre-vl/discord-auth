@@ -22,9 +22,17 @@ passport.use(new DiscordStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         const user = await DiscordUser.findOne({discordId: profile.id})
-        if (user)
+        if (user){
+            await user.updateOne({
+                discordId: profile.id,
+                username: profile.username,
+                discriminator: profile.discriminator,
+                avatar: profile.avatar,
+                email: profile.email,
+                guilds: profile.guilds,
+            });
             done(null, user);
-        else {
+        }else {
             const newUser = await DiscordUser.create({
                 discordId: profile.id,
                 username: profile.username,

@@ -3,10 +3,12 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const discordStrategy = require('./strategies/discordStrategy');
 const db = require('./database/database');
 const path = require('path');
+const mongoose = require('mongoose');
 
 db.then(() => {
     console.log('Connected to database');
@@ -28,7 +30,11 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     },
     saveUninitialized: false,
+    resave: false,
     name:"discord.oauth2",
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+    })
 }));
 
 app.set('view engine', 'ejs');
