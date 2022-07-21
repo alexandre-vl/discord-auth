@@ -15,7 +15,7 @@ npm install
 ```
 
 ```bash
-node server.js
+npm run dev
 ```
 
-Now go to the client folder and launch the site
+Now go to http://localhost:3000/ to see the result
