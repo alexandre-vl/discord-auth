@@ -1,0 +1,62 @@
+<div class="card-server">
+    <div class="card-server-image" style="background-image: url(<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`%>);">
+        <figure class="image-container is-4by3" style=" backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center; align-items: center">
+            <img src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`%>" alt="Placeholder image">
+        </figure>
+    </div>
+    <div class="card-server-content" style="height:50%; display: flex !important; flex-direction: column; justify-content: space-between">
+        <div class="media">
+            <div class="media-content">
+                <p class="server-title is-4"><%= guild.name%></p>
+                <p class="server-subtitle is-6"><%= guild.owner ? "Owner" : (((guild.permissions & 0x8) === 0x8) ? "Manage Bot" : "Member")%></p>
+            </div>
+        </div>
+
+        <div class="is-flex" style="display: flex; flex-direction: column; justify-content: space-between">
+            <button class="button is-light">Settings</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-server {
+        border-radius: 10px;
+        box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+        width: 350px;
+        height: 400px;
+        box-sizing: border-box !important;
+    }
+    .card-server-content {
+        padding: 20px 30px;
+    }
+
+    .card-server-image {
+        background-position: center;
+        background-size: 125%;
+        background-color: #252525;
+        height: 50%;
+    }
+
+    .card-server-image, .card-server-image figure {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-server-image figure {
+        height: 100%;
+    }
+
+    .image-container img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background-color: #252525;
+    }
+
+    .server-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+</style>

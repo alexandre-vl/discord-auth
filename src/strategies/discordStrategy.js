@@ -2,31 +2,36 @@ const DiscordStrategy = require('passport-discord').Strategy;
 const passport = require('passport');
 const DiscordUser = require('../models/DiscordUser');
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
+passport.serializeUser((user, done) => {
+    console.log("Serialize");
+    done(null, user.id)
 });
 
-passport.deserializeUser(async function(id, done) {
-    const user = DiscordUser.findById(id);
-    if (user)
+passport.deserializeUser(async (id, done) => {
+    console.log("Deserializing");
+    const user = await DiscordUser.findById(id);
+    if(user)
         done(null, user);
-
 });
 
 passport.use(new DiscordStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.DISCORD_CALLBACK_URL,
-    scope: ['identify' ,'guilds'],
+    scope: ['identify', 'email' ,'guilds', 'guilds.join'],
 }, async (accessToken, refreshToken, profile, done) => {
     try {
-        const user = await DiscordUser.findOne({id: profile.id})
+        const user = await DiscordUser.findOne({discordId: profile.id})
         if (user)
             done(null, user);
         else {
+            console.log(profile)
             const newUser = await DiscordUser.create({
-                id: profile.id,
+                discordId: profile.id,
                 username: profile.username,
+                discriminator: profile.discriminator,
+                email: profile.email,
+                guilds: profile.guilds,
             })
             const savedUser = await newUser.save();
             done(null, savedUser);

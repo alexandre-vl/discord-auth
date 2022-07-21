@@ -33,6 +33,7 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport
 app.use(passport.initialize());
@@ -43,10 +44,8 @@ app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 
 app.get('/', (req, res) => {
-    res.render('home', { users: [
-        { name: 'John Doe', email: 'john.doe@gmail.com'},
-            {name:'Mark', email: 'mark@gmail.com'},
-        ] });
+
+    res.render('home', {user: req.user, logged: !!req.user });
 });
 
 app.listen(PORT, () => {

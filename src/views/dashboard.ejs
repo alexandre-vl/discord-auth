@@ -1,0 +1,16 @@
+<%- include('partials/header') -%>
+<%- include('partials/dashboard/navbar') -%>
+<div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center is-8 p-6" style="gap: 50px">
+    <% user.guilds.sort(
+        function(x, y) {
+            if (x.owner !== y.owner) {
+                return x.owner ? -1 : 1;
+            } else {
+                return (((x.permissions & 0x8) === 0x8) === ((y.permissions & 0x8) === 0x8))? 0 : x? -1 : 1;
+            }
+        }).forEach((guild) => { %>
+        <%- include('partials/dashboard/guilds', { guild }) -%>
+    <% }) %>
+</div>
+
+<%- include('partials/footer') -%>

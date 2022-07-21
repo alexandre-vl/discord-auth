@@ -1,0 +1,32 @@
+<% if (!logged) { %>
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a class="button is-link" href="/auth">
+                <strong>Login</strong>
+            </a>
+        </div>
+    </div>
+</div>
+<% }else { %>
+<div class="navbar-end">
+    <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" style="color: #4974b3">
+            <%=user.username+"#"+user.discriminator%>
+        </a>
+
+        <div class="navbar-dropdown">
+            <a class="navbar-item" href="/dashboard">
+                Dashboard
+            </a>
+            <a class="navbar-item" href="/dashboard/settings">
+                Settings
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/auth/logout">
+                <strong>Logout</strong>
+            </a>
+        </div>
+    </div>
+</div>
+<% } %>
